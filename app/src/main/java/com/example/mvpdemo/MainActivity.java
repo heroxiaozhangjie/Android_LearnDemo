@@ -25,43 +25,48 @@ public class MainActivity extends AppCompatActivity implements MvpView {
         //初始化Presenter
         presenter = new MvpPresenter(this);
     }
+
     //button 点击事件调用方法
-    public void getData(View view){
+    public void getData(View view) {
         presenter.getData("normal");
     }
+
     //button 点击事件调用方法
-    public void getDataForFailure(View view){
+    public void getDataForFailure(View view) {
         presenter.getData("failure");
     }
+
     //button 点击事件调用方法
-    public void getDataForError(View view){
+    public void getDataForError(View view) {
         presenter.getData("error");
         @Override
-
+            //实现mvpview接口
         @Override
-        public void showLoading() {
+        public void showLoading () {
             if (!progressDialog.isShowing()) {
                 progressDialog.show();
             }
         }
         @Override
-        public void hideLoading() {
+        public void hideLoading () {
             if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
         }
         @Override
-        public void showData(String data) {
+        public void showData (String data){
             text.setText(data);
+
         }
         @Override
-        public void showFailureMessage(String msg) {
+        public void showFailureMessage (String msg){
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             text.setText(msg);
         }
         @Override
-        public void showErrorMessage() {
+        public void showErrorMessage () {
             Toast.makeText(this, "网络请求数据出现异常", Toast.LENGTH_SHORT).show();
             text.setText("网络请求数据出现异常");
         }
     }
+}
